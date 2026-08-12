@@ -6,7 +6,7 @@ on:
   # to feature branches
   push:
     branches:
-      - "feature/**"
+      - "feature/ravi"
       - main
 
   # Run validation again when PR is created/updated
@@ -167,11 +167,11 @@ jobs:
           BRANCH_NAME: ${{ github.ref_name }}
 
         run: |
-          echo "Feature Branch: $BRANCH_NAME"
+          echo "Feature Branch: feature/ravi"
 
           EXISTING_PR=$(gh pr list \
             --base main \
-            --head "$BRANCH_NAME" \
+            --head "feature/ravi" \
             --state open \
             --json number \
             --jq 'length')
@@ -184,8 +184,8 @@ jobs:
 
             gh pr create \
               --base main \
-              --head "$BRANCH_NAME" \
-              --title "Terraform changes - $BRANCH_NAME" \
+              --head "feature/ravi" \
+              --title "Terraform changes - feature/ravi" \
               --body "Automatically created after successful Terraform Validate and Plan."
 
             echo "Pull Request created successfully."
